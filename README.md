@@ -1,42 +1,33 @@
-[![Join the chat at https://gitter.im/UMMISCO/kendrick](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/UMMISCO/kendrick?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/UMMISCO/kendrick/master/LICENSE)
+How to write a book
+-------------------
 
-Kendrick is a Domain-Specific Language and Simulation Plaform for mathematical epidemiology modeling. It helps epidemiologists craft custom analyses cheaply. It's based on [Pharo](http://www.pharo.org/) and it's open source under MIT.
+This book is written in Pillar markup. If you are not familiar with it please check the [pillar-documentation](https://github.com/pillar-markup/pillar-documentation).
 
-Kendrick is member of Moose4Ebola team for [Ebola Challenge](https://www.hackerleague.org/hackathons/computing-for-ebola-challenge/hacks/moose4ebola).
+###Generating the book
 
-* Last stable version (0.16) on Pharo 4.0: [![Build Status](https://ci.inria.fr/pharo-contribution/buildStatus/icon?job=Kendrick/PHARO=30,VERSION=stable,VM=vm)](https://ci.inria.fr/pharo-contribution/job/Kendrick/PHARO=40,VERSION=stable,VM=vm/)
-* Last dev version on Pharo 4.0: [![Build Status](https://ci.inria.fr/pharo-contribution/buildStatus/icon?job=Kendrick/PHARO=30,VERSION=development,VM=vm)](https://ci.inria.fr/pharo-contribution/job/Kendrick/PHARO=40,VERSION=development,VM=vm/)
+First of all you have to run `./download.sh` to obtain the Pillar executable that does all the job.
 
-All the development happens on SmalltalkHub at the moment: http://bit.ly/XrpsL2
+To generate your book execute `./compile.sh`. If you want to generate only one chapter, pass the file's path to the script: `./compile.sh Example/Example.pillar`. If you have `pdflatex` installed and available in your system's `PATH`, the script will also generate pdf files.
 
-[![Spatial modeling with Kendrick](https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-xpa1/t31.0-8/10603924_704650679621532_369168494419506567_o.png)](https://www.facebook.com/ObjectProfile/photos/a.341189379300999.82969.340543479365589/704650679621532/?type=1&theater)
+###Adding a chapter
 
-Kendrick is based extensively on several tools of the meta-modeling platform [MOOSE](http://www.moosetechnology.org/) including [PetitParser](http://www.moosetechnology.org/tools/petitparser) and Roassal visualization engine.
+To add a chapter create a directory for it (named, e.g., `Example`) and put there a `.pillar` file (named, e.g., `Example.pillar`) which will contain the chapter itself. Put images in the `figures` subdirectory of the new chapter directory.
 
-Github is only used to store [issues](https://github.com/UMMISCO/Kendrick/issues) list.
+Add your chapter to:
 
-## How to install Kendrick 0.16
-* Download the last dev MOOSE 5.1 on INRIA's CI server: https://ci.inria.fr/moose/job/moose-5.1/
-* Load Kendrick:
+* `pillar.conf` in the `inputFiles` array as: `"Example/Example.pillar"`, and
+* `_support/templates/book.latex.template` in `\graphicspath` as `{Example/}`
 
-```Smalltalk
-Gofer new
-    url: 'http://smalltalkhub.com/mc/UMMISCO/Kendrick/main';
-    package: 'ConfigurationOfKendrick';
-    load.
-(Smalltalk at: #ConfigurationOfKendrick) load
-````
+###Caveats
 
-## How to install Kendrick development version
-* Download the last dev MOOSE 5.1 on INRIA's CI server: https://ci.inria.fr/moose/job/moose-5.1/
-* Load Kendrick:
+* You must neither use spaces nor underscores (`_`) in file names.
 
-```Smalltalk
-Gofer new
-    url: 'http://smalltalkhub.com/mc/UMMISCO/Kendrick/main';
-    package: 'ConfigurationOfKendrick';
-    load.
-(Smalltalk at: #ConfigurationOfKendrick) loadDevelopment
-````
+Tools
+-----
 
+There are mods/bundles/packages for text editors, that provide improvements for pillar files editing:
+
+* Emacs: [pillar-mode](https://github.com/pillar-markup/pillar-mode)
+* Vim: [vim-pillar](https://github.com/cdlm/vim-pillar)
+* TextMate: [Pillar.tmbundle](https://github.com/pillar-markup/Pillar.tmbundle)
+* ATOM: [language-pillar](https://github.com/pillar-markup/language-pillar)
